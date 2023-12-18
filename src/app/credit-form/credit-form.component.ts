@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl } from "@angular/forms";
+import { FormGroup, FormControl, Validators } from "@angular/forms";
 
 @Component({
   selector: 'app-credit-form',
@@ -8,7 +8,7 @@ import { FormGroup, FormControl } from "@angular/forms";
 })
 export class CreditFormComponent {
   creditForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     credit: new FormGroup({
       cardNumber: new FormControl(''),
       expiration: new FormControl(''),

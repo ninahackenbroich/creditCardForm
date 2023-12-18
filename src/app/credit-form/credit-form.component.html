@@ -1,8 +1,17 @@
 <form [formGroup]="creditForm">
-  <div>
-    <label formControlName="name">Name</label>
-    <input formControlName="name">
+  <div class="field">
+    <label formControlName="name" class="label">Name</label>
+    <input formControlName="name" class="input">
+    <ng-container *ngIf="creditForm.controls.name.touched && creditForm.controls.name.errors">
+      <div *ngIf="creditForm.controls.name.errors?.['required']">
+        <p class="help is-danger">This field is required.</p>
+      </div>
+      <div *ngIf="creditForm.controls.name.errors?.['minlength']">
+        <p class="help is-danger">You only entered {{ creditForm.controls.name.errors['minlength'].actualLength }} characters. Minimum {{ creditForm.controls.name.errors['minlength'].requiredLength }} characters required.</p>
+      </div>
+    </ng-container>
   </div>
 </form>
 <div>{{ creditForm.value | json }}</div>
 <div>Form is valid {{ creditForm.valid }}</div>
+<div>Form Errors {{ creditForm.controls.name.errors | json }}</div>
