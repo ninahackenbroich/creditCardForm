@@ -1,12 +1,30 @@
-<form [formGroup]="creditForm" (ngSubmit)="onSubmit()">
-    <app-input label="Name" [control]="creditForm.controls.name" [label]="'Name'"></app-input>
-    <app-input label="Card Number" [control]="creditForm.controls.cardNumber"></app-input>
-    <app-input label="Exp." [control]="creditForm.controls.expiration"></app-input>
-    <app-input label="CVV" [control]="creditForm.controls.securityCode"></app-input>
-    <div class="control">
-      <button [disabled]="creditForm.invalid" class="button is-link">Submit</button>
+
+<div class="section container">
+  <div class="columns">
+    <div class="column is-half-tablet">
+      <app-card-display [expiration]="creditForm.controls.expiration.value" [name]="creditForm.controls.name.value" [cardNumber]="creditForm.controls.cardNumber.value"></app-card-display>
     </div>
-</form>
-<div>{{ creditForm.value | json }}</div>
-<div>Form is valid {{ creditForm.valid }}</div>
-<div>Form Errors {{ creditForm.controls.name.errors | json }}</div>
+    <div class="column is-half-tablet">
+      <form [formGroup]="creditForm" (ngSubmit)="onSubmit()">
+          <app-input label="Name" [control]="creditForm.controls.name" [label]="'Name'"></app-input>
+          <app-input label="Card Number" [control]="creditForm.controls.cardNumber"></app-input>
+          <div class="control columns pt-3">
+            <div class="column">
+              <app-input label="Exp." [control]="creditForm.controls.expiration"></app-input>
+            </div>
+            <div class="column">
+              <app-input label="CVV" [control]="creditForm.controls.securityCode"></app-input>
+            </div>
+          </div>
+          <div class="control columns pt-3">
+            <div class="column">
+              <button [disabled]="creditForm.invalid" class="button is-link">Submit</button>
+            </div>
+            <div class="column">
+              <button class="button is-warning" (click)="onReset()">Reset</button>
+            </div>
+          </div>
+      </form>
+    </div>
+  </div>
+</div>

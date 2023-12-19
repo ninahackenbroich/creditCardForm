@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormGroup, FormControl, Validators } from "@angular/forms";
 import { DateFormControl } from "../date-form-control";
 
@@ -8,6 +8,7 @@ import { DateFormControl } from "../date-form-control";
   styleUrls: ['./credit-form.component.css']
 })
 export class CreditFormComponent {
+
   creditForm = new FormGroup({
     name: new FormControl('', [Validators.required, Validators.minLength(3)]),
     cardNumber: new FormControl('', [
@@ -28,6 +29,10 @@ export class CreditFormComponent {
 
   onSubmit() {
     console.log(this.creditForm.value);
+  }
+
+  onReset() {
+    this.creditForm.reset();
   }
 
   constructor() { }
